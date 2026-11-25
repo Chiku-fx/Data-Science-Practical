@@ -1,0 +1,74 @@
+Data shape: (569, 8)
+Class counts:
+target
+benign       357
+malignant    212
+Name: count, dtype: int64
+Train: (455, 8) Test: (114, 8)
+
+    Criterion Max depth  Train acc  Test acc
+0    entropy         2      0.923     0.921
+1    entropy         3      0.963     0.930
+2    entropy         4      0.978     0.912
+3    entropy         5      0.991     0.930
+4    entropy         6      0.996     0.939
+5    entropy      none      1.000     0.939
+6       gini         2      0.941     0.912
+7       gini         3      0.971     0.947
+8       gini         4      0.982     0.956
+9       gini         5      0.985     0.965
+10      gini         6      0.993     0.965
+11      gini      none      1.000     0.956
+
+Train accuracy: 0.963, Test accuracy: 0.930
+Confusion matrix:
+[[39  3]
+ [ 5 67]]
+              precision    recall  f1-score   support
+
+   malignant       0.89      0.93      0.91        42
+      benign       0.96      0.93      0.94        72
+
+    accuracy                           0.93       114
+   macro avg       0.92      0.93      0.93       114
+weighted avg       0.93      0.93      0.93       114
+
+|--- worst radius <= 16.80
+|   |--- mean concavity <= 0.09
+|   |   |--- mean texture <= 21.56
+|   |   |   |--- class: 1
+|   |   |--- mean texture >  21.56
+|   |   |   |--- class: 1
+|   |--- mean concavity >  0.09
+|   |   |--- worst radius <= 14.86
+|   |   |   |--- class: 1
+|   |   |--- worst radius >  14.86
+|   |   |   |--- class: 0
+|--- worst radius >  16.80
+|   |--- mean texture <= 15.82
+|   |   |--- mean concavity <= 0.09
+|   |   |   |--- class: 1
+|   |   |--- mean concavity >  0.09
+|   |   |   |--- class: 0
+|   |--- mean texture >  15.82
+|   |   |--- mean smoothness <= 0.07
+|   |   |   |--- class: 0
+|   |   |--- mean smoothness >  0.07
+|   |   |   |--- class: 0
+
+Parent entropy: 0.9534, parent gini: 0.4681
+           Feature  Best threshold  Information gain
+0     worst radius         16.7950            0.5652
+1   mean perimeter         98.8250            0.4780
+2      mean radius         15.0450            0.4717
+3   mean concavity          0.0933            0.4670
+4  worst concavity          0.2080            0.3913
+5     mean texture         18.6350            0.1613
+6  mean smoothness          0.0895            0.1224
+7    mean symmetry          0.1715            0.0869
+
+Root chosen by sklearn: worst radius <= 16.795
+Root from manual calculation: worst radius <= 16.795
+
+Result: worst radius is the root node because it has the highest information gain (0.5652);
+the depth-3 entropy tree reaches 93.0% accuracy on the test set.
